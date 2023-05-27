@@ -71,7 +71,7 @@ calculadora_t CrearCalculadora(void);
  * @return true
  * @return false
  */
-bool AgregarOperacion(calculadora_t calculadora, char operador, functiont_t funcion);
+bool AgregarOperacion(calculadora_t calculadora, char operador, funciont_t funcion);
 
 /**
  * @brief

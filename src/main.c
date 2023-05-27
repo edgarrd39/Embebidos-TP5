@@ -46,9 +46,32 @@ SPDX-License-Identifier: MIT
 
 /* === Private function implementation ========================================================= */
 
+int suma(int a, int b) {
+    return a + b;
+}
+
+int resta(int a, int b) {
+    return a - b;
+}
+
+int producto(int a, int b) {
+    return a * b;
+}
+
 /* === Public function implementation ========================================================== */
 
 int main(void) {
+
+    int resultado;
+
+    calculadora_t calculadora = CrearCalculadora();
+
+    AgregarOperacion(calculadora, '+', suma);
+    AgregarOperacion(calculadora, '-', resta);
+    AgregarOperacion(calculadora, '*', producto);
+
+    resultado = Calcular(calculadora, "4+3");
+    printf("Resultado %i\r\n", resultado);
 
     return 0;
 }

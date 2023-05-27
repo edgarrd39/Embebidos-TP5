@@ -30,25 +30,90 @@ SPDX-License-Identifier: MIT
 /* === Headers files inclusions =============================================================== */
 
 #include "calculadora.h"
+#include <stdlib.h>
+#include <stdbool.h>
+#include <stdint.h>
+#include <string.h>
 
 /* === Macros definitions ====================================================================== */
+#ifndef OPERACIONES
+#define OPERACIONES 16
+#endif
 
 /* === Private data type declarations ========================================================== */
 
-struct operacion_s {};
+struct operacion_s {
+    char operador;
+    funciont_t funcion;
+};
 
-struct calculadora_s {};
+struct calculadora_s {
+    struct operacion_s operaciones[OPERACIONES];
+};
+
 /* === Private variable declarations =========================================================== */
 
 /* === Private function declarations =========================================================== */
 
-/* === Public variable definitions ============================================================= */
+operacion_t BuscarOperacion(calculadora_t calculadora, char operador);
+/* === Public variable definitions =============================================
+================ */
 
 /* === Private variable definitions ============================================================ */
 
 /* === Private function implementation ========================================================= */
 
+operacion_t BuscarOperacion(calculadora_t calculadora, char operador) {
+    operacion_t result = NULL;
+    for (int indice = 0; indice < OPERACIONES; indice++) {
+        if (calculadora->operaciones[indice].operador == operador) {
+            result = &calculadora->operaciones[indice];
+            break;
+        }
+    }
+    return result;
+}
 /* === Public function implementation ========================================================= */
+
+calculadora_t CrearCalculadora(void) {
+    calculadora_t result = malloc(sizeof(struct calculadora_s));
+    if (result) {
+        memset(result, 0, sizeof(struct calculadora_s));
+    }
+    return result;
+}
+
+bool AgregarOperacion(calculadora_t calculadora, char operador, funciont_t funcion) {
+    operacion_t operacion = BuscarOperacion(calculadora, '\0');
+
+    if ((operacion) && !BuscarOperacion(calculadora, operador)) {
+        operacion->operador = operador;
+        operacion->funcion = funcion;
+    }
+    return (operacion != NULL);
+}
+
+int Calcular(calculadora_t calculadora, char * cadena) {
+    int a, b;
+    char operador;
+    int result = 0;
+
+    for (int indice = 0; indice < strlen(cadena); indice++) {
+        if (cadena[indice] < '0') {
+            operador = cadena[indice];
+            a = atoi(cadena);
+            b = atoi(cadena + indice + 1);
+
+            break;
+        }
+    }
+
+    operacion_t operacion = BuscarOperacion(calculadora, operador);
+    if (operacion) {
+        result = operacion->funcion(a, b);
+    }
+    return result;
+}
 
 /* === End of documentation ==================================================================== */
 
