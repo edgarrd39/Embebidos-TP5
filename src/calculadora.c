@@ -35,6 +35,9 @@ SPDX-License-Identifier: MIT
 
 /* === Private data type declarations ========================================================== */
 
+struct operacion_s {};
+
+struct calculadora_s {};
 /* === Private variable declarations =========================================================== */
 
 /* === Private function declarations =========================================================== */

@@ -32,6 +32,8 @@ SPDX-License-Identifier: MIT
 
 /* === Headers files inclusions ================================================================ */
 
+#include <stdint.h>
+#include <stdbool.h>
 /* === Cabecera C++ ============================================================================ */
 
 #ifdef __cplusplus
@@ -42,9 +44,43 @@ extern "C" {
 
 /* === Public data type declarations =========================================================== */
 
+//! Referencia a un descriptor para gestionar una calculadora
+typedef struct calculadora_s * calculadora_t;
+
+//! Referencia a un descriptor para gestionar operaciones matematicas
+typedef struct operacion_s * operacion_t;
+
+typedef int (*funciont_t)(int, int);
 /* === Public variable declarations ============================================================ */
 
 /* === Public function declarations ============================================================ */
+
+/**
+ * @brief
+ *
+ * @return calculadora_t
+ */
+calculadora_t CrearCalculadora(void);
+
+/**
+ * @brief
+ *
+ * @param calculadora
+ * @param operador
+ * @param funcion
+ * @return true
+ * @return false
+ */
+bool AgregarOperacion(calculadora_t calculadora, char operador, functiont_t funcion);
+
+/**
+ * @brief
+ *
+ * @param calculadora
+ * @param cadena
+ * @return int
+ */
+int Calcular(calculadora_t calculadora, char * cadena);
 
 /* === End of documentation ==================================================================== */
 
