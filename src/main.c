@@ -58,20 +58,38 @@ int producto(int a, int b) {
     return a * b;
 }
 
+int division(int a, int b) {
+    if (b == 0) {
+        printf("No se puede dividir por cero\n");
+        return 0;
+    } else
+        return a / b;
+}
+
 /* === Public function implementation ========================================================== */
 
 int main(void) {
 
-    int resultado;
+    int resultado_suma;
+    int resultado_resta;
+    int resultado_producto;
+    int resultado_division;
 
     calculadora_t calculadora = CrearCalculadora();
 
     AgregarOperacion(calculadora, '+', suma);
     AgregarOperacion(calculadora, '-', resta);
     AgregarOperacion(calculadora, '*', producto);
+    AgregarOperacion(calculadora, '/', division);
 
-    resultado = Calcular(calculadora, "4+3");
-    printf("Resultado %i\r\n", resultado);
+    resultado_suma = Calcular(calculadora, "4+3");
+    printf("Resultado suma %i\r\n", resultado_suma);
+    resultado_resta = Calcular(calculadora, "4-3");
+    printf("Resultado resta %i\r\n", resultado_resta);
+    resultado_producto = Calcular(calculadora, "4*3");
+    printf("Resultado producto %i\r\n", resultado_producto);
+    resultado_division = Calcular(calculadora, "12/3");
+    printf("Resultado division %i\r\n", resultado_division);
 
     return 0;
 }
