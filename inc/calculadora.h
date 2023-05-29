@@ -22,11 +22,12 @@ SPDX-License-Identifier: MIT
 #ifndef CALCULADORA_H
 #define CALCULADORA_H
 
-/** \brief Brief description of the file
+/** \brief Modulo Calculadora
  **
- ** Full file description
+ ** Creación de la calculadora que realiza operaciones
+ ** Matematicas usando funciones de callback
  **
- ** \addtogroup name Module denomination
+ ** \addtogroup calculadora CALCULADORA
  ** \brief Brief description of the module
  ** @{ */
 
@@ -50,35 +51,42 @@ typedef struct calculadora_s * calculadora_t;
 //! Referencia a un descriptor para gestionar operaciones matematicas
 typedef struct operacion_s * operacion_t;
 
+//! Referencia a una funcion de callback
 typedef int (*funciont_t)(int, int);
 /* === Public variable declarations ============================================================ */
 
 /* === Public function declarations ============================================================ */
 
 /**
- * @brief
+ * @brief Creación del objeto calculadora
+ *
+ * Crea un objeto del tipo Calculadora
  *
  * @return calculadora_t
  */
 calculadora_t CrearCalculadora(void);
 
 /**
- * @brief
+ * @brief Agrega operaciones matemáticas
  *
- * @param calculadora
- * @param operador
- * @param funcion
+ * Agregan operaciones matematicas dependiendo del operador elegido
+ *
+ * @param calculadora Puntero al descriptor calculadora
+ * @param operador Caracter de la operacion matemática
+ * @param funcion Función de Callback a las operaciones matemáticas
  * @return true
  * @return false
  */
 bool AgregarOperacion(calculadora_t calculadora, char operador, funciont_t funcion);
 
 /**
- * @brief
+ * @brief Realiza el calculo matemático
  *
- * @param calculadora
- * @param cadena
- * @return int
+ * Realiza el calculo matemático usando las funciones de acuerdo al operador elegido
+ *
+ * @param calculadora Puntero al descriptor calculadora
+ * @param cadena Puntero a la cadena que contiene la operacion con el operando
+ * @return int El resultado de la operacion elegida
  */
 int Calcular(calculadora_t calculadora, char * cadena);
 

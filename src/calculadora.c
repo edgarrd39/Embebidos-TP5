@@ -19,11 +19,11 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 SPDX-License-Identifier: MIT
 *************************************************************************************************/
 
-/** \brief Brief description of the file
+/** \brief Implementación Calculadora
  **
- ** Full file description
+ ** Implementacion Calculadora
  **
- ** \addtogroup name Module denomination
+ ** \addtogroup name Calculadora
  ** \brief Brief description of the module
  ** @{ */
 
@@ -42,12 +42,14 @@ SPDX-License-Identifier: MIT
 
 /* === Private data type declarations ========================================================== */
 
+//! Estructura de la operacion
 struct operacion_s {
-    char operador;
-    funciont_t funcion;
-    operacion_t siguiente;
+    char operador;         //!< Operador de la operacion
+    funciont_t funcion;    //!< Función del operador
+    operacion_t siguiente; //!< PUntero a la operacion siguiente;
 };
 
+//! Estructura de la calculadora
 struct calculadora_s {
     operacion_t operaciones;
 };
